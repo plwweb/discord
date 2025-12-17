@@ -23,7 +23,7 @@ client.on('ready', async () => {
 
   // สั่งให้แสดงผลพร้อมกันทั้ง 2 อย่าง
   client.user.setPresence({
-    status: 'dnd', // สถานะจุดสีเหลือง (หรือเปลี่ยนเป็น online)
+    status: 'online', // สถานะจุดสีเหลือง (หรือเปลี่ยนเป็น online)
     activities: [custom, roblox] 
   });
 });
