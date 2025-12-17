@@ -1,29 +1,26 @@
-const { Client, CustomStatus } = require('discord.js-selfbot-v13');
+const { Client, CustomStatus, RichPresence } = require('discord.js-selfbot-v13');
 const client = new Client({ checkUpdate: false });
 
 client.on('ready', async () => {
-  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์พร้อมสถานะ Roblox และ Custom Status!`);
+  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์พร้อมแก้ไขโลโก้ Roblox!`);
 
   // 1. สร้าง Custom Status (ข้อความ + Emoji)
   const custom = new CustomStatus(client)
-    .setEmoji('🔥') // เปลี่ยน Emoji ได้ที่นี่
-    .setState('รันระบบอัตโนมัติ 24/7'); // เปลี่ยนข้อความสถานะได้ที่นี่
+    .setEmoji('🔥') 
+    .setState('24/7');
 
-  // 2. ตั้งค่าสถานะการเล่นเกม ROBLOX (แบบมีโลโก้)
-  const roblox = {
-    name: "ROBLOX",
-    type: 'PLAYING',
-    applicationId: '439205569915518976', // ID ของ Roblox
-    details: 'Playing Roblox',
-    assets: {
-      largeImage: '439205569915518976', // ดึงโลโก้ Roblox
-      largeText: 'Roblox'
-    }
-  };
+  // 2. สร้าง Rich Presence สำหรับ Roblox แบบละเอียด
+  const roblox = new RichPresence(client)
+    .setApplicationId('439205569915518976') // Roblox ID
+    .setType('PLAYING')
+    .setName('ROBLOX')
+    .setDetails('')
+    .setAssetsLargeImage('439205569915518976') // ลองใช้ ID ของแอปเป็นรหัสรูป
+    .setAssetsLargeText('Roblox');
 
-  // สั่งให้แสดงผลพร้อมกันทั้ง 2 อย่าง
+  // สั่งแสดงผล
   client.user.setPresence({
-    status: 'online', // สถานะจุดสีเหลือง (หรือเปลี่ยนเป็น online)
+    status: 'dnd',
     activities: [custom, roblox] 
   });
 });
