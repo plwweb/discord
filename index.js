@@ -14,7 +14,6 @@ client.on('ready', async () => {
     .setApplicationId('439205569915518976') // Roblox ID
     .setType('PLAYING')
     .setName('ROBLOX')
-    .setDetails('')
     .setAssetsLargeImage('439205569915518976') // ลองใช้ ID ของแอปเป็นรหัสรูป
     .setAssetsLargeText('Roblox');
 
