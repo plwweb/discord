@@ -1,27 +1,18 @@
-name: Discord Online 24/7
+name: Discord Online
 on:
   schedule:
-    - cron: '0 */4 * * *' # สั่งให้รันใหม่ทุกๆ 4 ชั่วโมงอัตโนมัติ
-  workflow_dispatch: # เพิ่มปุ่มกดรันเอง (Manual Run)
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
 
 jobs:
   run-discord:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
-
-      - name: Install Dependencies
-        run: npm install discord.js-selfbot-v13
-
-      - name: Run Discord Bot
-        # ใช้ timeout 4h เพื่อให้บอทออนไลน์ยาวๆ ก่อนที่ Workflow รอบใหม่จะมาแทนที่
-        # เติม || true เพื่อไม่ให้ GitHub แจ้งเตือนว่า Error ตอนโดนตัดจบ
-        run: timeout 4h node index.js || true
+      - run: npm install discord.js-selfbot-v13
+      - run: timeout 4h node index.js || true
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
