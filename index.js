@@ -2,7 +2,7 @@ const { Client, CustomStatus, RichPresence } = require('discord.js-selfbot-v13')
 const client = new Client({ checkUpdate: false });
 
 client.on('ready', async () => {
-  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์พร้อมแก้ไขโลโก้ Roblox!`);
+  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์พร้อมแก้ไขโลโก้ !`);
 
   // 1. สร้าง Custom Status (ข้อความ + Emoji)
   const custom = new CustomStatus(client)
