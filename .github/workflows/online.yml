@@ -1,0 +1,21 @@
+name: Discord Online 24/7 (Unlimited)
+on:
+  schedule:
+    # รันใหม่ทุกๆ 6 ชั่วโมง (00:00, 06:00, 12:00, 18:00)
+    - cron: '0 */6 * * *' 
+  workflow_dispatch:
+
+jobs:
+  run-discord:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm install discord.js-selfbot-v13
+      # สั่งให้รันยาว 355 นาที (ประมาณ 5 ชั่วโมง 55 นาที)
+      # เติม || true เพื่อให้กระบวนการรันต่อได้แม้จะถูกตัดจบตามเวลา
+      - run: timeout 355m node index.js || true
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
