@@ -2,6 +2,9 @@ const { Client, RichPresence } = require('discord.js-selfbot-v13');
 const client = new Client({ checkUpdate: false });
 
 client.on('ready', async () => {
+  console.log(`✅ ${client.user.tag} ออนไลน์ต่อเนื่องแบบ No-Downtime!`);
+
+client.on('ready', async () => {
   console.log(`✅ บัญชี ${client.user.tag} ออนไลน์พร้อมสถานะ Roblox!`);
 
   // 1. ส่วนของ Roblox Rich Presence
@@ -17,7 +20,7 @@ client.on('ready', async () => {
   const customStatus = {
     name: 'Custom Status', // 🔴 บรรทัดนี้สำคัญมาก ต้องใส่กัน error
     type: 'CUSTOM',
-    state: '24/7', 
+    state: '24/7 nakub', 
     emoji: { name: '🔥' } 
   };
 
