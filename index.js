@@ -2,10 +2,8 @@ const { Client, RichPresence } = require('discord.js-selfbot-v13');
 const client = new Client({ checkUpdate: false });
 
 client.on('ready', async () => {
-  console.log(`✅ ${client.user.tag} ออนไลน์ต่อเนื่องแบบ No-Downtime!`);
-  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์พร้อมสถานะ Roblox!`);
+  console.log(`✅ ${client.user.tag} ออนไลน์รอบใหม่แบบ Maximum Duration!`);
 
-  // 1. ส่วนของ Roblox Rich Presence
   const rblx = new RichPresence(client)
     .setApplicationId('439205569915518976')
     .setType('PLAYING')
@@ -14,7 +12,6 @@ client.on('ready', async () => {
     .setAssetsLargeText('Roblox')
     .setStartTimestamp(Date.now());
 
-  // 2. ส่วนของ Custom Status
   const customStatus = {
     name: 'Custom Status', 
     type: 'CUSTOM',
@@ -22,7 +19,6 @@ client.on('ready', async () => {
     emoji: { name: '🔥' } 
   };
 
-  // รวมทั้งสองอย่างเข้าด้วยกัน
   client.user.setPresence({
     status: 'dnd',
     activities: [customStatus, rblx]
