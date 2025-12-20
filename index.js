@@ -2,27 +2,27 @@ const { Client } = require('discord.js-selfbot-v13');
 const client = new Client({ checkUpdate: false });
 
 client.on('ready', async () => {
-  console.log(`✅ ${client.user.tag} ออนไลน์พร้อมโลโก้ Roblox ของจริง!`);
+  console.log(`✅ ${client.user.tag} ออนไลน์ด้วยวิธี Raw Data (บังคับโชว์รูป)`);
 
+  // ใช้การส่งค่าแบบ Object โดยตรง เพื่อข้ามปัญหาระบบของ Library
   client.user.setPresence({
-    status: 'online', // สถานะห้ามรบกวน (สีแดง)
+    status: 'dnd',
     activities: [
       {
-        // 1. Custom Status
+        // ส่วนของ Custom Status
         type: 'CUSTOM',
         name: 'Custom Status',
         state: '24/7 nakub', 
         emoji: { name: '🔥' }
       },
       {
-        // 2. Roblox Playing (ใช้ ID ของเราเอง)
+        // ส่วนของ Roblox (Application ID ของคุณ)
         type: 'PLAYING',
-        name: 'Roblox', // ชื่อที่จะโชว์ตัวหนา
-        // 🔴 นำ Application ID ที่ Copy มา ใส่แทนเลขตรงนี้
-        applicationId: '1451806614750498996', 
+        name: 'ROBLOX', 
+        applicationId: '1451806614750498996', // ✅ ID ของคุณ
+        details: 'In Game',
         assets: {
-          // 🔴 ใส่ชื่อรูปที่คุณตั้งใน Art Assets (เช่น 'logo')
-          largeImage: 'logo', 
+          largeImage: 'logo', // ✅ ชื่อรูปใน Developer Portal
           largeText: 'Roblox'
         },
         timestamps: {
