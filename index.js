@@ -2,17 +2,16 @@ const { Client, RichPresence } = require('discord.js-selfbot-v13');
 const client = new Client({ checkUpdate: false });
 
 client.on('ready', async () => {
-  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์พร้อมภาพ งง Roblox!`);
+  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์พร้อมแก้ปัญหาเรื่องภาพ!`);
 
-  // ใช้ลิงก์ภาพจากระบบ Discord Content Delivery Network โดยตรง
-  // วิธีนี้จะช่วยแก้รูปเครื่องหมายคำถาม (?) ได้ดีที่สุด
+  // ใช้ภาพจากที่จัดเก็บของ Discord โดยตรง เพื่อเลี่ยงรูปเครื่องหมายคำถาม
   const rblx = new RichPresence(client)
     .setApplicationId('439205569915518976')
     .setType('PLAYING')
     .setName('Roblox')
     .setDetails('In Game')
-    // ใช้ External Asset ID ของ Discord
-    .setAssetsLargeImage('439205569915518976') 
+    // ดึงภาพจากฐานข้อมูลรูปภาพที่เสถียรที่สุด
+    .setAssetsLargeImage('https://i.imgur.com/vHPTvYn.png') 
     .setAssetsLargeText('Roblox')
     .setStartTimestamp(Date.now());
 
