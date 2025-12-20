@@ -2,20 +2,20 @@ const { Client, RichPresence } = require('discord.js-selfbot-v13');
 const client = new Client({ checkUpdate: false });
 
 client.on('ready', async () => {
-  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์สำเร็จ! (รันยาว 6 ชม.)`);
+  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์พร้อมภาพ Roblox!`);
 
-  // 1. ส่วนของ Roblox Rich Presence
-  // เปลี่ยนมาใช้ ID รูปภาพของ Discord แทนลิงก์ URL เพื่อป้องกัน INVALID_URL
+  // ใช้ลิงก์ภาพที่ดึงจาก Discord Content Delivery Network โดยตรง
+  const rblxImage = 'mp:external/v2L_Xp8Y_M-s7zY9J2-q9-Z0-I/https/raw.githubusercontent.com/Anankun9/Discord-Online-24-7/main/roblox.png';
+
   const rblx = new RichPresence(client)
     .setApplicationId('439205569915518976')
     .setType('PLAYING')
     .setName('Roblox')
     .setDetails('In Game')
-    .setAssetsLargeImage('439205569915518976') // ใช้ ID ของ Roblox โดยตรง
+    .setAssetsLargeImage(rblxImage) // บังคับใช้ลิงก์ตรงที่ Discord อ่านได้
     .setAssetsLargeText('Roblox')
     .setStartTimestamp(Date.now());
 
-  // 2. ส่วนของ Custom Status
   const customStatus = {
     name: 'Custom Status', 
     type: 'CUSTOM',
