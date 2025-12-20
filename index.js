@@ -2,15 +2,16 @@ const { Client, RichPresence } = require('discord.js-selfbot-v13');
 const client = new Client({ checkUpdate: false });
 
 client.on('ready', async () => {
-  // แก้ไขข้อความ Log ให้ดูง่ายขึ้น
-  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์พร้อมสถานะ Roblox (รันยาว 6 ชม.)`);
+  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์สำเร็จ! (รันยาว 6 ชม.)`);
 
-  // 1. ส่วนของ Roblox Rich Presence (ใช้ลิงก์รูปภาพใหม่ที่คุณให้มา)
+  // 1. ส่วนของ Roblox Rich Presence
+  // เปลี่ยนมาใช้ ID รูปภาพของ Discord แทนลิงก์ URL เพื่อป้องกัน INVALID_URL
   const rblx = new RichPresence(client)
     .setApplicationId('439205569915518976')
     .setType('PLAYING')
     .setName('Roblox')
-    .setAssetsLargeImage('https://img5.pic.in.th/file/secure-sv1/imagec46f84e71c747974.png')
+    .setDetails('In Game')
+    .setAssetsLargeImage('439205569915518976') // ใช้ ID ของ Roblox โดยตรง
     .setAssetsLargeText('Roblox')
     .setStartTimestamp(Date.now());
 
@@ -22,7 +23,6 @@ client.on('ready', async () => {
     emoji: { name: '🔥' } 
   };
 
-  // สั่งออนไลน์สถานะ Do Not Disturb พร้อมกิจกรรมทั้งหมด
   client.user.setPresence({
     status: 'dnd',
     activities: [customStatus, rblx]
