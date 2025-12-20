@@ -1,30 +1,35 @@
-const { Client, RichPresence } = require('discord.js-selfbot-v13');
+const { Client } = require('discord.js-selfbot-v13');
 const client = new Client({ checkUpdate: false });
 
 client.on('ready', async () => {
-  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์พร้อมแก้ปัญหาเรื่องภาพ!`);
-
-  // ใช้ภาพจากที่จัดเก็บของ Discord โดยตรง เพื่อเลี่ยงรูปเครื่องหมายคำถาม
-  const rblx = new RichPresence(client)
-    .setApplicationId('439205569915518976')
-    .setType('PLAYING')
-    .setName('Roblox')
-    .setDetails('In Game')
-    // ดึงภาพจากฐานข้อมูลรูปภาพที่เสถียรที่สุด
-    .setAssetsLargeImage('https://i.imgur.com/vHPTvYn.png') 
-    .setAssetsLargeText('Roblox')
-    .setStartTimestamp(Date.now());
-
-  const customStatus = {
-    name: 'Custom Status', 
-    type: 'CUSTOM',
-    state: '24/7 nakub', 
-    emoji: { name: '🔥' } 
-  };
+  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์สำเร็จ (No Error Mode)`);
 
   client.user.setPresence({
     status: 'dnd',
-    activities: [customStatus, rblx]
+    activities: [
+      {
+        // 1. Custom Status
+        type: 'CUSTOM',
+        name: 'Custom Status',
+        state: '24/7 nakub', 
+        emoji: { name: '🔥' }
+      },
+      {
+        // 2. Roblox Playing
+        type: 'PLAYING',
+        name: 'ROBLOX',
+        applicationId: '439205569915518976',
+        details: 'In Game',
+        assets: {
+          // ใช้รหัสรูปภาพโดยตรงแทน URL เพื่อเลี่ยง Error
+          largeImage: '439205569915518976', 
+          largeText: 'Roblox'
+        },
+        timestamps: {
+          start: Date.now()
+        }
+      }
+    ]
   });
 });
 
