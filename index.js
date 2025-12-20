@@ -2,10 +2,10 @@ const { Client } = require('discord.js-selfbot-v13');
 const client = new Client({ checkUpdate: false });
 
 client.on('ready', async () => {
-  console.log(`✅ บัญชี ${client.user.tag} ออนไลน์สำเร็จ (No Error Mode)`);
+  console.log(`✅ ${client.user.tag} ออนไลน์พร้อมโลโก้ Roblox ของจริง!`);
 
   client.user.setPresence({
-    status: 'dnd',
+    status: 'dnd', // สถานะห้ามรบกวน (สีแดง)
     activities: [
       {
         // 1. Custom Status
@@ -15,14 +15,15 @@ client.on('ready', async () => {
         emoji: { name: '🔥' }
       },
       {
-        // 2. Roblox Playing
+        // 2. Roblox Playing (ใช้ ID ของเราเอง)
         type: 'PLAYING',
-        name: 'ROBLOX',
-        applicationId: '439205569915518976',
+        name: 'ROBLOX', // ชื่อที่จะโชว์ตัวหนา
+        // 🔴 นำ Application ID ที่ Copy มา ใส่แทนเลขตรงนี้
+        applicationId: '1451806614750498996', 
         details: 'In Game',
         assets: {
-          // ใช้รหัสรูปภาพโดยตรงแทน URL เพื่อเลี่ยง Error
-          largeImage: '439205569915518976', 
+          // 🔴 ใส่ชื่อรูปที่คุณตั้งใน Art Assets (เช่น 'logo')
+          largeImage: 'logo', 
           largeText: 'Roblox'
         },
         timestamps: {
